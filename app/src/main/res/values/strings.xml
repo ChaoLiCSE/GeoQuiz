@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+
+    <string name="text_question">Constantinople is the largest cit in Turkey.</string>
+
+    <string name="button_true">True</string>
+    <string name="button_false">False</string>
+
+    <string name="toast_correct">Correct!</string>
+    <string name="toast_incorrect">Incorrect!</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
