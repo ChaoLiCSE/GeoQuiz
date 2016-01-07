@@ -2,6 +2,7 @@ package com.example.jack.geoquiz;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.Key;
 
 
 public class QuizActivity extends Activity {
@@ -21,8 +23,6 @@ public class QuizActivity extends Activity {
 
     private TextView mTextViewQuestion;
 
-
-
     private TrueFalse[] mQuestionBank = new TrueFalse[] {
         new TrueFalse(R.string.question_oceans, true),
         new TrueFalse(R.string.question_mideast, false),
@@ -33,15 +33,21 @@ public class QuizActivity extends Activity {
 
     private int mCurrentIndex = 0;
 
+    private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
 
         mTextViewQuestion = (TextView)findViewById(R.id.textview_question);
         mTextViewQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
             }
         });
@@ -66,6 +72,7 @@ public class QuizActivity extends Activity {
         mButtonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
             }
         });
@@ -78,7 +85,47 @@ public class QuizActivity extends Activity {
             }
         });
 
+        if(savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
         updateQuestion();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.d(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
     }
 
     @Override
@@ -104,7 +151,6 @@ public class QuizActivity extends Activity {
     }
 
     private void updateQuestion() {
-        mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
         int question = mQuestionBank[mCurrentIndex].getQuestion();
         mTextViewQuestion.setText(question);
     }
