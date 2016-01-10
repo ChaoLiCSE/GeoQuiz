@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
+    <string name="action_settings">Settings</string>
 
+    <!-- Quiz Activity -->
     <string name="question_oceans">The Pacific Ocean is larger than the Atlantic Ocean.</string>
     <string name="question_mideast">The Suez Canal connects the Red Sea and the Indian Ocean.</string>
     <string name="question_africa">The source of the Nile River is in Egypt.</string>
@@ -15,5 +17,16 @@
     <string name="toast_correct">Correct!</string>
     <string name="toast_incorrect">Incorrect!</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- Quiz Activity -->
+    <string name="button_cheat">Cheat!</string>
+    <string name="button_show_answer">Show Answer</string>
+
+    <string name="text_warning">Are you sure you want to do this?</string>
+
+    <string name="toast_judgment">Cheating is wrong</string>
+    <string name="title_activity_cheat">CheatActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+
 </resources>
